@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="320dp"
+    android:background="@drawable/camera_shape"
+    android:layout_height="400dp">
+
+    <TextView
+        android:paddingTop="30dp"
+        android:fontFamily="@font/ebrima"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="28sp"
+        android:text="Nova poruka" />
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"/>
+
+    <EditText
+        android:padding="6dp"
+        android:id="@+id/numberInput"
+        android:inputType="phone"
+        android:fontFamily="@font/ebrima"
+        android:background="@drawable/shape_input_box"
+        android:layout_gravity="center"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:hint="Broj"/>
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"/>
+
+    <EditText
+        android:padding="6dp"
+        android:background="@drawable/shape_input_box"
+        android:id="@+id/messageInput"
+        android:fontFamily="@font/ebrima"
+        android:paddingTop="10dp"
+        android:layout_gravity="center"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:lines="6"
+        android:hint="Sadrzaj vase poruke"/>
+
+
+
+
+</LinearLayout>

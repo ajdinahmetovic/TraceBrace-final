@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OnBoarding_first">
+
+    <LinearLayout android:id="@+id/first_board"
+        android:layout_width="320dp"
+        android:layout_height="500dp"
+        android:background="@drawable/shape_asset"
+        android:orientation="vertical"
+
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:src="@drawable/asset_grb"/>
+
+        <TextView
+            android:paddingTop="50dp"
+            android:textSize="40dp"
+            android:fontFamily="@font/ebrima"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Trace Brace"/>
+
+    </LinearLayout>
+
+</FrameLayout>

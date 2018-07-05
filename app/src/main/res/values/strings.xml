@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">TraceBrace</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="onboarding_message_one">TraceBrace je narukvica koja omogućava slanje SOS poruka putem ove aplikacije.</string>
+    <string name="onboarding_message_three">SOS poruke se šalju preko Vašeg mobilnog operatera, dok se u njima šalje i Vaša lokacija. Broj poruka je neograničen.</string>
+    <string name="message_cameraScan">Dodajte Vašu narukvicu! Skenirajte QR kod koji ste dobili u pakovanju.</string>
+    <string name="onboarding_message_suess">Čestitamo uspiješno ste dodali svoju naruukvicu !</string>
+</resources>

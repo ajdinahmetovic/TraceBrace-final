@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/third_board"
+    android:layout_width="320dp"
+    android:layout_height="490dp"
+    android:background="@drawable/shape_asset"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <ImageView
+        android:layout_gravity="center"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@drawable/message_asset"/>
+
+    <TextView
+        android:paddingTop="50dp"
+        android:textSize="22dp"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        android:fontFamily="@font/ebrima"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/onboarding_message_three"/>
+
+    </LinearLayout>
