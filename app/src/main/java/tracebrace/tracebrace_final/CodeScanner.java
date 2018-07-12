@@ -36,6 +36,7 @@ public class CodeScanner extends Fragment {
     SurfaceView cameraPreview;
     BarcodeDetector barcodeDetector;
     CardView container;
+    TinyDB localDb;
 
     FragmentManager manager;
     FragmentTransaction transaction;
@@ -75,6 +76,8 @@ public class CodeScanner extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_code_scanner, container, false);
         manager = getFragmentManager();
+
+        localDb = new TinyDB(getContext());
 
         final Intent intent = new Intent(getContext(), MessagesActivity.class);
 
@@ -133,9 +136,10 @@ public class CodeScanner extends Fragment {
                     Vibrator vibrator = (Vibrator)getContext().getSystemService(Context.VIBRATOR_SERVICE);
                     vibrator.vibrate(vibratePattern,-1);
 
-                    System.out.println(qrcodes.valueAt(0).displayValue);
-                    if(qrcodes.valueAt(0).displayValue.equals("http://www.qrstuff.com/")) {
-                        System.out.println("equals");
+                    //System.out.println(qrcodes.valueAt(0).displayValue);
+                    if(qrcodes.valueAt(0).displayValue.length()==17) {
+                        System.out.println(qrcodes.valueAt(0).displayValue);
+                        localDb.putString("macAddr", qrcodes.valueAt(0).displayValue);
                         vibrator.vibrate(1000);
                         transaction = manager.beginTransaction();
                         transaction.replace(R.id.frame, new OnBoarding_second()).commit();

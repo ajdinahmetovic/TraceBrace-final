@@ -1,5 +1,7 @@
 package tracebrace.tracebrace_final;
 
+import android.Manifest;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -36,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if(!isMyServiceRunning(BackgroundService.class)){
+            startService(new Intent(getApplicationContext(), BackgroundService.class));
+            System.out.println("Stary");
+        }
 
         final FrameLayout frameLayout = findViewById(R.id.frame);
 
@@ -44,6 +50,14 @@ public class MainActivity extends AppCompatActivity {
             //Request permission
             ActivityCompat.requestPermissions(MainActivity.this,
                     new String[]{android.Manifest.permission.CAMERA},1001);
+
+            ActivityCompat.requestPermissions(MainActivity.this,
+                    new String[]{Manifest.permission.ACCESS_WIFI_STATE},1002);
+            ActivityCompat.requestPermissions(MainActivity.this,
+                    new String[]{Manifest.permission.CHANGE_WIFI_STATE},1003);
+            ActivityCompat.requestPermissions(MainActivity.this,
+                    new String[]{Manifest.permission.VIBRATE},1004);
+
         }
 
 
@@ -128,7 +142,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    private boolean isMyServiceRunning(Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 
 
