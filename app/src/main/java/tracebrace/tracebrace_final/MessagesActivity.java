@@ -57,7 +57,7 @@ public class MessagesActivity extends AppCompatActivity {
 
         if(localDb.getInt("messagesCount")==0){
 
-            noMessages.setText("No messages :(");
+            noMessages.setText(R.string.no_messages);
             noMessages.setTextSize((int)(20*scale+0.5f));
             noMessages.setGravity(Gravity.CENTER);
             mainLayout.addView(noMessages);
@@ -90,7 +90,7 @@ public class MessagesActivity extends AppCompatActivity {
                     builder.setView(view2);
                     builder.setCancelable(false);
 
-                    builder.setPositiveButton("Izmijeni", new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton(R.string.option_change, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             ArrayList<String> numbers = localDb.getListString("numbers");
@@ -106,14 +106,14 @@ public class MessagesActivity extends AppCompatActivity {
                             recreate();
                         }
                     });
-                    builder.setNegativeButton("Ponisti", new DialogInterface.OnClickListener() {
+                    builder.setNegativeButton(R.string.option_cancel, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
                         }
                     });
 
-                    builder.setNeutralButton("Izbrisi", new DialogInterface.OnClickListener() {
+                    builder.setNeutralButton(R.string.option_delete, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             ArrayList<String> numbers = localDb.getListString("numbers");

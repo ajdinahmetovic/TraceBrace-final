@@ -1,6 +1,7 @@
 package tracebrace.tracebrace_final;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +16,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private Boolean firstTime = null;
     TinyDB localDb;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         final FrameLayout frameLayout = findViewById(R.id.frame);
 
-
+        localDb=new TinyDB(getApplicationContext());
         if (ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             //Request permission
             ActivityCompat.requestPermissions(MainActivity.this,
@@ -64,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         isFirstTime();
-        if(!firstTime){
+        if(!firstTime /*&& !localDb.getString("macAddr").isEmpty()*/){
             Intent intent = new Intent(this, MessagesActivity.class);
             startActivity(intent);
         }
@@ -103,6 +107,8 @@ public class MainActivity extends AppCompatActivity {
                     views[currIndex-1].animate();
                     frameLayout.removeAllViews();
                     frameLayout.addView(views[currIndex]);
+                    //Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rtol);
+                    //views[currIndex].startAnimation(animation);
                 } else if(currIndex == 3){
                     frameLayout.removeAllViews();
                     transaction = manager.beginTransaction();
@@ -114,6 +120,8 @@ public class MainActivity extends AppCompatActivity {
                     currIndex--;
                     frameLayout.removeAllViews();
                     frameLayout.addView(views[currIndex]);
+                    //Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.ltor);
+                    //views[currIndex].startAnimation(animation);
                 }
             }
 

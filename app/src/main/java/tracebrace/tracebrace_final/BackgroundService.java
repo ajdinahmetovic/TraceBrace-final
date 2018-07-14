@@ -100,15 +100,11 @@ public class BackgroundService extends Service {
                             System.out.println("https://www.google.com/maps/?q="+latitude+","+longitude);
 
                             if(localDb.getInt("messageCount")!=0){
-
-
                                 for(int j  = 0;j<localDb.getInt("messageCount");j++){
-                                    smsManager.sendTextMessage(localDb.getListString("numbers").get(j), null,localDb.getListString("messages").get(j) + '\n' + "Lokacija: "+"https://www.google.com/maps/?q="+latitude+","+longitude, null, null );
+//                                    smsManager.sendTextMessage(localDb.getListString("numbers").get(j), null,localDb.getListString("messages").get(j) + '\n' + "Lokacija: "+"https://www.google.com/maps/?q="+latitude+","+longitude, null, null );
                                 }
 
                             }
-
-
                             Vibrator vibrator = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                             vibrator.vibrate(1000);
                             try {
