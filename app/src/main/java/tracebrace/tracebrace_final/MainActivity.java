@@ -7,11 +7,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,9 +22,11 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,29 +46,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(!isMyServiceRunning(BackgroundService.class)){
-            startService(new Intent(getApplicationContext(), BackgroundService.class));
-            System.out.println("Stary");
-        }
+
 
         final FrameLayout frameLayout = findViewById(R.id.frame);
 
         localDb=new TinyDB(getApplicationContext());
-        if (ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            //Request permission
-            ActivityCompat.requestPermissions(MainActivity.this,
-                    new String[]{android.Manifest.permission.CAMERA},1001);
 
-            ActivityCompat.requestPermissions(MainActivity.this,
-                    new String[]{Manifest.permission.ACCESS_WIFI_STATE},1002);
-            ActivityCompat.requestPermissions(MainActivity.this,
-                    new String[]{Manifest.permission.CHANGE_WIFI_STATE},1003);
-            ActivityCompat.requestPermissions(MainActivity.this,
-                    new String[]{Manifest.permission.VIBRATE},1004);
-
+        ActivityCompat.requestPermissions(MainActivity.this,
+                new String[]{Manifest.permission.CAMERA, Manifest.permission.SEND_SMS, Manifest.permission.ACCESS_FINE_LOCATION},
+                1);
+/*
+        if(!isMyServiceRunning(BackgroundService.class)){
+            startService(new Intent(getApplicationContext(), BackgroundService.class));
+            System.out.println("Start");
         }
 
-
+*/
 
 
         isFirstTime();
@@ -132,8 +129,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
     private boolean isFirstTime() {
         if (firstTime == null) {
             SharedPreferences mPreferences = this.getSharedPreferences("first_time", Context.MODE_PRIVATE);
@@ -161,6 +156,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                    Toast.makeText(MainActivity.this, "Permission denied to read your External storage", Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
+    }
 
 
 }
