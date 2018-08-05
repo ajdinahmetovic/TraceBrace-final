@@ -1,6 +1,10 @@
 package tracebrace.tracebrace_final;
 
+import android.Manifest;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,12 +21,14 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.security.Permission;
 import java.util.ArrayList;
 
 public class MessagesActivity extends AppCompatActivity {
 
     LinearLayout mainLayout;
     Button addMessage;
+    Button settings;
     EditText message;
     EditText number;
     View view;
@@ -46,6 +52,7 @@ public class MessagesActivity extends AppCompatActivity {
         addMessage = findViewById(R.id.addButton);
 
         localDb = new TinyDB(this);
+        settings = findViewById(R.id.settingsButton);
 
         mainLayout = findViewById(R.id.messagesLayout);
         final float scale = getApplicationContext().getResources().getDisplayMetrics().density;
@@ -194,7 +201,7 @@ public class MessagesActivity extends AppCompatActivity {
                 builder.setView(view);
                 builder.setCancelable(false);
 
-                builder.setPositiveButton("Dodaj", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(R.string.option_add, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         ArrayList<String> numbers = localDb.getListString("numbers");
@@ -212,14 +219,20 @@ public class MessagesActivity extends AppCompatActivity {
                         recreate();
                     }
                 });
-                builder.setNegativeButton("Ponisti", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(R.string.option_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
                     }
                 });
-
                 builder.show();
+            }
+        });
+
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
             }
         });
 

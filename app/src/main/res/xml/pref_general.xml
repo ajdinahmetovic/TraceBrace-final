@@ -1,0 +1,57 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <PreferenceCategory
+        android:title="@string/settings_category_0">
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="gps_allow"
+        android:id="@+id/gps_allow"
+        android:summary="@string/setting_summary_0"
+        android:title="@string/setting_title_0" />
+
+    <SwitchPreference
+        android:shadowColor="#808080"
+        android:clickable="false"
+        android:defaultValue="false"
+        android:key="live_allow"
+        android:id="@+id/live_allow"
+        android:summary="@string/setting_summary_1"
+        android:title="@string/setting_title_1" />
+
+    <ListPreference
+        android:defaultValue="-1"
+        android:entries="@array/message_distance"
+        android:entryValues="@array/message_distance_values"
+        android:key="message_distance"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:summary="@string/setting_summary_2"
+        android:title="@string/setting_title_2" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="About">
+
+      <PreferenceScreen android:title="Contact">
+          <intent
+              android:action="android.intent.action.VIEW"
+              android:data="http://www.tracebrace.site"
+              />
+      </PreferenceScreen>
+        <Preference android:title="Buy bracelet">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://www.olx.ba/pretraga?trazilica=Golf+2+povoljno"
+                />
+        </Preference>
+        <Preference android:title="Leave feedback">
+                <intent
+                    android:action="android.intent.action.VIEW"
+                    android:data="https://play.google.com/store/apps/details?id=tracebrace.tracebrace_final"
+                    />
+        </Preference>
+
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

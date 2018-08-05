@@ -2,10 +2,12 @@ package tracebrace.tracebrace_final;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -138,6 +140,8 @@ public class CodeScanner extends Fragment {
 
                     //System.out.println(qrcodes.valueAt(0).displayValue);
                     if(qrcodes.valueAt(0).displayValue.length()==17) {
+                        final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getContext());
+                       // sharedPref.edit().putString("ID",qrcodes.valueAt(0).displayValue).commit();
                         System.out.println(qrcodes.valueAt(0).displayValue);
                         localDb.putString("macAddr", qrcodes.valueAt(0).displayValue);
                         vibrator.vibrate(1000);

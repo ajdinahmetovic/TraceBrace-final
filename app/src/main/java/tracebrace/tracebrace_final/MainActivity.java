@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -55,19 +56,12 @@ public class MainActivity extends AppCompatActivity {
         ActivityCompat.requestPermissions(MainActivity.this,
                 new String[]{Manifest.permission.CAMERA, Manifest.permission.SEND_SMS, Manifest.permission.ACCESS_FINE_LOCATION},
                 1);
-/*
-        if(!isMyServiceRunning(BackgroundService.class)){
-            startService(new Intent(getApplicationContext(), BackgroundService.class));
-            System.out.println("Start");
-        }
-
-*/
-
 
         isFirstTime();
         if(!firstTime /*&& !localDb.getString("macAddr").isEmpty()*/){
             Intent intent = new Intent(this, MessagesActivity.class);
             startActivity(intent);
+            finish();
         }
 
         final View onboardingFirst =  LayoutInflater.from(this).inflate(R.layout.onboarding_first, null);
@@ -155,32 +149,30 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case 1: {
 
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
 
-                    // permission was granted, yay! Do the
-                    // contacts-related task you need to do.
-                } else {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
-                    Toast.makeText(MainActivity.this, "Permission denied to read your External storage", Toast.LENGTH_SHORT).show();
-                }
-                return;
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED) {
+            sharedPref.edit().putBoolean("gps_allow", false).apply();
+
+        } else {
+            if(!isMyServiceRunning(BackgroundService.class)){
+                startService(new Intent(getApplicationContext(), BackgroundService.class));
+                System.out.println("Start");
             }
-
-            // other 'case' lines to check for other
-            // permissions this app might request
         }
+
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED) {
+            System.out.println("Camera allowd");
+        }
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.SEND_SMS)!= PackageManager.PERMISSION_GRANTED) {
+            sharedPref.edit().putBoolean("gps_allow", false).apply();
+        }
+
+
+
     }
-
-
 }
