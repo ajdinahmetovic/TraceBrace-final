@@ -6,12 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".SettingsActivity">
 
-    <android.support.v7.preference.PreferenceScreen
-        >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="back" />
+
+    </LinearLayout>
 
 
-    </android.support.v7.preference.PreferenceScreen>
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="598dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
+    </FrameLayout>
 
 
 </android.support.constraint.ConstraintLayout>

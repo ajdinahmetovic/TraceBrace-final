@@ -1,6 +1,5 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-
     <PreferenceCategory
         android:title="@string/settings_category_0">
     <SwitchPreference
@@ -11,6 +10,8 @@
         android:title="@string/setting_title_0" />
 
     <SwitchPreference
+        android:textColor="#808080"
+        android:enabled="false"
         android:shadowColor="#808080"
         android:clickable="false"
         android:defaultValue="false"
@@ -30,7 +31,7 @@
         android:title="@string/setting_title_2" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="About">
+    <PreferenceCategory android:title="@string/setting_title_3">
 
       <PreferenceScreen android:title="Contact">
           <intent
@@ -38,19 +39,34 @@
               android:data="http://www.tracebrace.site"
               />
       </PreferenceScreen>
-        <Preference android:title="Buy bracelet">
+        <Preference android:title="@string/setting_title_4">
+            <!--
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="https://www.olx.ba/pretraga?trazilica=Golf+2+povoljno"
                 />
+                -->
         </Preference>
-        <Preference android:title="Leave feedback">
+        <Preference android:title="@string/setting_title_5">
+            <!--
                 <intent
                     android:action="android.intent.action.VIEW"
                     android:data="https://play.google.com/store/apps/details?id=tracebrace.tracebrace_final"
                     />
+                    -->
         </Preference>
+    </PreferenceCategory>
 
+    <PreferenceCategory android:title="Disclaimer">
+
+        <Preference
+            android:summary="Development of the application is part of UN Women project „ Standards and Engagement for Ending Violence against Women and Domestic Violence in Bosnia and Herzegovina“ financially supported by the Swedish International Development Cooperation Agency (Sida).">
+
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://www.unwomen.org/en"
+                />
+        </Preference>
 
     </PreferenceCategory>
 

@@ -20,7 +20,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="onboarding_message_one">TraceBrace is a bracelet that allows you to send SOS messages via this application.</string>
     <string name="onboarding_message_three">The SOS messages with your location are sent via your service provider. The number of messages you can send at once is unlimited.</string>
-    <string name="message_cameraScan">Add your bracelet! Scan the QR code that you recieved in the packaging.</string>
+    <string name="message_cameraScan">To connect bracelet please hold button for 5-7 seconds</string>
     <string name="onboarding_message_suess">Congratulations, you have successfully connected your bracelet!</string>
     <string name="no_messages">No messages :(</string>
     <string name="option_change">Edit</string>
@@ -29,19 +29,22 @@
     <string name="new_message">New message</string>
     <string name="content_text">Content of SOS message</string>
     <string name="number_text">Phone number</string>
-
     <string name="title_activity_settings2">Settings</string>
     <string name="settings_category_0">Message settings</string>
     <string name="setting_summary_0">Allow application to add your location to SOS message</string>
     <string name="setting_title_0">GPS tracking</string>
-    <string name="setting_summary_1">Allow application to add link to your application where you can be tracked live in realtime</string>
+    <string name="setting_summary_1">Allow application to add link to your application where you can be tracked live in realtime (requires internet)</string>
     <string name="setting_title_1">Live tracking</string>
-    <string name="setting_summary_2">Svakih koliko da telefon salje poruku opis smisliti</string>
-    <string name="setting_title_2">Razmak</string>
+    <string name="setting_summary_2">In case you dont have internet connection app will send more messages by your location changes</string>
+    <string name="setting_title_2">Distance between messages</string>
     <string name="add_btn">Dodaj</string>
     <string name="cancel_btn">Ponisti</string>
     <string name="option_add">Add</string>
     <string name="ID">-0</string>
+    <string name="setting_title_3">About</string>
+    <string name="setting_title_4">Buy bracelet</string>
+    <string name="setting_title_5">Leave feedback</string>
+    <string name="location">Location</string>
 
     <string-array name="message_distance_values">
         <item>-1</item>
@@ -53,7 +56,6 @@
 
 
     <string-array name="multi_select_list_preference_default_value" />
-
 
 
     <string-array name="message_distance">

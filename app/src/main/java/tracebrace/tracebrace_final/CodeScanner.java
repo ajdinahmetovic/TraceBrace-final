@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.net.wifi.ScanResult;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
@@ -23,6 +25,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
@@ -30,6 +33,7 @@ import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
+import java.util.List;
 
 
 public class CodeScanner extends Fragment {
@@ -39,6 +43,10 @@ public class CodeScanner extends Fragment {
     BarcodeDetector barcodeDetector;
     CardView container;
     TinyDB localDb;
+
+
+    WifiManager wifiManager;
+    List<ScanResult> scanResults;
 
     FragmentManager manager;
     FragmentTransaction transaction;
@@ -51,6 +59,7 @@ public class CodeScanner extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    /*
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
@@ -70,6 +79,7 @@ public class CodeScanner extends Fragment {
             break;
         }
     }
+    */
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -82,7 +92,7 @@ public class CodeScanner extends Fragment {
         localDb = new TinyDB(getContext());
 
         final Intent intent = new Intent(getContext(), MessagesActivity.class);
-
+/*
         cameraPreview = (SurfaceView) view.findViewById(R.id.cameraPreview);
 
         barcodeDetector = new BarcodeDetector.Builder(getContext())
@@ -150,19 +160,53 @@ public class CodeScanner extends Fragment {
 
 
                        // startActivity(intent);
-/*
+
                         frame.removeAllViews();
                         frame.addView(sucess);
-*/
+
                     }
 
                 }
             }
         });
+*/
+
+        wifiManager = (WifiManager)  getActivity().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+
+        System.out.println("KUGLAAA");
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+
+                    System.out.println("KUGLAAA");
+                    boolean a = true;
+
+                    while (a) {
+
+                        //System.out.println("SCANN");
+                        wifiManager.startScan();
+                        scanResults = wifiManager.getScanResults();
+
+                        for (int  i = 0;i<scanResults.size();i++){
+                            System.out.println(scanResults.get(i).SSID);
+                            if(scanResults.get(i).SSID.equals("traceBrace")){
+                                System.out.println("NASOOOOO");
+                               // Toast.makeText(getContext(), "TraceBrace is connected", Toast.LENGTH_LONG).show();
+
+                                a = false;
+                                localDb.putString("macAddr", scanResults.get(i).BSSID);
+                                localDb.putBoolean("justConnected", true);
+                                startActivity(intent);
 
 
+                            }
 
+                        }
 
+                    }
+                }
+            }).start();
         return view;
     }
 }

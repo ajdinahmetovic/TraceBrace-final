@@ -28,6 +28,7 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,18 +48,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
         final FrameLayout frameLayout = findViewById(R.id.frame);
 
         localDb=new TinyDB(getApplicationContext());
+
+
 
         ActivityCompat.requestPermissions(MainActivity.this,
                 new String[]{Manifest.permission.CAMERA, Manifest.permission.SEND_SMS, Manifest.permission.ACCESS_FINE_LOCATION},
                 1);
 
+
+
+
         isFirstTime();
-        if(!firstTime /*&& !localDb.getString("macAddr").isEmpty()*/){
+        if(!firstTime && !localDb.getString("macAddr").isEmpty()){
             Intent intent = new Intent(this, MessagesActivity.class);
             startActivity(intent);
             finish();
@@ -149,30 +153,4 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    @Override
-
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-
-        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED) {
-            sharedPref.edit().putBoolean("gps_allow", false).apply();
-
-        } else {
-            if(!isMyServiceRunning(BackgroundService.class)){
-                startService(new Intent(getApplicationContext(), BackgroundService.class));
-                System.out.println("Start");
-            }
-        }
-
-        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED) {
-            System.out.println("Camera allowd");
-        }
-        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.SEND_SMS)!= PackageManager.PERMISSION_GRANTED) {
-            sharedPref.edit().putBoolean("gps_allow", false).apply();
-        }
-
-
-
-    }
 }

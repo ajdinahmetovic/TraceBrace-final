@@ -1,9 +1,13 @@
 package tracebrace.tracebrace_final;
 
 import android.Manifest;
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -49,6 +53,16 @@ public class MessagesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages);
 
+
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED) {
+            System.out.println("sHOULD START");
+            if(!isMyServiceRunning(BackgroundService.class)){
+                startService(new Intent(getApplicationContext(), BackgroundService.class));
+                System.out.println("Start");
+            }
+        }
+
+
         addMessage = findViewById(R.id.addButton);
 
         localDb = new TinyDB(this);
@@ -71,10 +85,12 @@ public class MessagesActivity extends AppCompatActivity {
 
         }
 
+
+
         for(int  i=0; i<localDb.getInt("messageCount"); i++){
             mainLayout.removeView(noMessages);
 
-            CardView message = new CardView(getApplicationContext());
+            final CardView message = new CardView(getApplicationContext());
             message.setId(i);
             message.setLayoutParams(messageParams);
             message.setPadding(0,0,0,0);
@@ -91,8 +107,8 @@ public class MessagesActivity extends AppCompatActivity {
                     numberText = view2.findViewById(R.id.numberInput);
                     messageText = view2.findViewById(R.id.messageInput);
 
-                    numberText.setText(localDb.getListString("numbers").get(k));
-                    messageText.setText(localDb.getListString("messages").get(k));
+                    numberText.setText(localDb.getListString("numbers").get(message.getId()));
+                    messageText.setText(localDb.getListString("messages").get(message.getId()));
 
                     builder.setView(view2);
                     builder.setCancelable(false);
@@ -101,12 +117,12 @@ public class MessagesActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             ArrayList<String> numbers = localDb.getListString("numbers");
-                            numbers.set(k, numberText.getText().toString());
+                            numbers.set(message.getId(), numberText.getText().toString());
                             localDb.putListString("numbers",numbers);
 
 
                             ArrayList<String> messages = localDb.getListString("messages");
-                            messages.set(k, messageText.getText().toString());
+                            messages.set(message.getId(), messageText.getText().toString());
                             localDb.putListString("messages",messages);
 
                             mainLayout.invalidate();
@@ -124,12 +140,12 @@ public class MessagesActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             ArrayList<String> numbers = localDb.getListString("numbers");
-                            numbers.remove(k);
+                            numbers.remove(message.getId());
                             localDb.putListString("numbers",numbers);
 
 
                             ArrayList<String> messages = localDb.getListString("messages");
-                            messages.remove(k);
+                            messages.remove(message.getId());
                             localDb.putListString("messages",messages);
 
                             localDb.putInt("messageCount", localDb.getInt("messageCount")-1);
@@ -236,8 +252,45 @@ public class MessagesActivity extends AppCompatActivity {
             }
         });
 
-
-
-
     }
+
+
+    private boolean isMyServiceRunning(Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED) {
+            sharedPref.edit().putBoolean("gps_allow", false).apply();
+
+        } else {
+            if(!isMyServiceRunning(BackgroundService.class)){
+                startService(new Intent(getApplicationContext(), BackgroundService.class));
+                System.out.println("Start");
+            }
+        }
+
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED) {
+            System.out.println("Camera allowd");
+        }
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.SEND_SMS)!= PackageManager.PERMISSION_GRANTED) {
+            sharedPref.edit().putBoolean("gps_allow", false).apply();
+        }
+    }
+
+
+
+
+
 }

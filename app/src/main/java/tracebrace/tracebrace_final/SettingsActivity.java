@@ -26,12 +26,11 @@ public class SettingsActivity extends PreferenceActivity {
 
         final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         //init
-
         settings = new Settings();
         localDb = new TinyDB(this);
 
         //settings.gps_tracking = gps_tracking.isEnabled();
-        sharedPref.edit().putBoolean("gps_allow", false).apply();
+        //sharedPref.edit().putBoolean("gps_allow", false).apply();
 
         SharedPreferences.OnSharedPreferenceChangeListener spChanged = new
                 SharedPreferences.OnSharedPreferenceChangeListener() {
@@ -39,15 +38,12 @@ public class SettingsActivity extends PreferenceActivity {
                     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
                                                           String key) {
                             if(sharedPref.getBoolean("gps_allow", false) && ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED ){
-
-
                                 ActivityCompat.requestPermissions(SettingsActivity.this,
                                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                                         1);
                             }
                     }
                 };
-
         sharedPref.registerOnSharedPreferenceChangeListener(spChanged);
     }
 }
