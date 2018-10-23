@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="320dp"
-    android:background="@drawable/camera_shape"
-    android:layout_height="400dp">
+    android:background="@color/colorPrimary"
+    android:layout_height="410dp">
 
     <TextView
         android:paddingTop="30dp"
@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="28sp"
-        android:text="@string/new_message" />
+        android:text="@string/edit_message" />
     <View
         android:layout_width="wrap_content"
         android:layout_height="50dp"/>
@@ -23,7 +23,7 @@
         android:id="@+id/numberInput"
         android:inputType="phone"
         android:fontFamily="@font/ebrima"
-        android:background="@drawable/shape_input_box"
+        android:background="#FFFFFF"
         android:layout_gravity="center"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
 
     <EditText
         android:padding="6dp"
-        android:background="@drawable/shape_input_box"
+        android:background="#FFFFFFff"
         android:id="@+id/messageInput"
         android:fontFamily="@font/ebrima"
         android:paddingTop="10dp"
@@ -43,5 +43,47 @@
         android:layout_height="wrap_content"
         android:lines="6"
         android:hint="@string/content_text"/>
+
+
+    <LinearLayout
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:textColor="#FFFFFF"
+            android:id="@+id/dismiss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:background="@android:color/transparent"/>
+        <View
+            android:layout_width="50dp"
+            android:layout_height="1dp">
+
+        </View>
+
+
+        <Button
+            android:textColor="#FFFFFF"
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="delete"
+            android:background="@android:color/transparent"/>
+
+        <Button
+            android:textColor="#FFFFFF"
+            android:id="@+id/addMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit"
+            android:background="@android:color/transparent"/>
+    </LinearLayout>
+
+
+
 
 </LinearLayout>

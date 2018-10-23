@@ -45,6 +45,7 @@
     <string name="setting_title_4">Buy bracelet</string>
     <string name="setting_title_5">Leave feedback</string>
     <string name="location">Location</string>
+    <string name="edit_message">Edit Message</string>
 
     <string-array name="message_distance_values">
         <item>-1</item>

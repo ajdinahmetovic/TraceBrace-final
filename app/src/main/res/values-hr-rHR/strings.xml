@@ -27,6 +27,7 @@
     <string name="setting_title_4">Kupi narukvicu</string>
     <string name="setting_title_5">Ostavi utisak</string>
     <string name="location">Lokacija</string>
+    <string name="edit_message">Edit Message</string>
 
 
     <string-array name="message_distance_values">

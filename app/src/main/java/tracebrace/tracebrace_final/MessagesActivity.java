@@ -2,6 +2,7 @@ package tracebrace.tracebrace_final;
 
 import android.Manifest;
 import android.app.ActivityManager;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -101,21 +102,20 @@ public class MessagesActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
-                    final LayoutInflater inflater = LayoutInflater.from(MessagesActivity.this);
-                    view2 = inflater.inflate(R.layout.edit_message, null);
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(MessagesActivity.this);
-                    numberText = view2.findViewById(R.id.numberInput);
-                    messageText = view2.findViewById(R.id.messageInput);
+
+                    final Dialog dialog = new Dialog(MessagesActivity.this);
+                    dialog.setContentView(R.layout.edit_message);
+                    dialog.setCancelable(true);
+                    numberText = dialog.findViewById(R.id.numberInput);
+                    messageText = dialog.findViewById(R.id.messageInput);
 
                     numberText.setText(localDb.getListString("numbers").get(message.getId()));
                     messageText.setText(localDb.getListString("messages").get(message.getId()));
 
-                    builder.setView(view2);
-                    builder.setCancelable(false);
-
-                    builder.setPositiveButton(R.string.option_change, new DialogInterface.OnClickListener() {
+                    Button edit = dialog.findViewById(R.id.addMsg);
+                    edit.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public void onClick(DialogInterface dialog, int which) {
+                        public void onClick(View view) {
                             ArrayList<String> numbers = localDb.getListString("numbers");
                             numbers.set(message.getId(), numberText.getText().toString());
                             localDb.putListString("numbers",numbers);
@@ -129,16 +129,12 @@ public class MessagesActivity extends AppCompatActivity {
                             recreate();
                         }
                     });
-                    builder.setNegativeButton(R.string.option_cancel, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
 
-                        }
-                    });
 
-                    builder.setNeutralButton(R.string.option_delete, new DialogInterface.OnClickListener() {
+                    Button delte = dialog.findViewById(R.id.delete);
+                    delte.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public void onClick(DialogInterface dialog, int which) {
+                        public void onClick(View view) {
                             ArrayList<String> numbers = localDb.getListString("numbers");
                             numbers.remove(message.getId());
                             localDb.putListString("numbers",numbers);
@@ -154,7 +150,19 @@ public class MessagesActivity extends AppCompatActivity {
 
                         }
                     });
-                    builder.show();
+
+                    Button dismiss = dialog.findViewById(R.id.dismiss);
+                    dismiss.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    dialog.show();
+
+
+
 
                 }
             });
@@ -206,6 +214,56 @@ public class MessagesActivity extends AppCompatActivity {
         final LayoutInflater inflater = LayoutInflater.from(MessagesActivity.this);
 
 
+
+
+
+        addMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Dialog dialog = new Dialog(MessagesActivity.this);
+                dialog.setContentView(R.layout.new_message);
+
+                number = dialog.findViewById(R.id.numberInput);
+                message = dialog.findViewById(R.id.messageInput);
+                dialog.setCancelable(true);
+
+                Button add = dialog.findViewById(R.id.addMsg);
+                add.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        ArrayList<String> numbers = localDb.getListString("numbers");
+                        numbers.add(number.getText().toString());
+                        localDb.putListString("numbers",numbers);
+
+
+                        ArrayList<String> messages = localDb.getListString("messages");
+                        messages.add(message.getText().toString());
+                        localDb.putListString("messages",messages);
+
+                        localDb.putInt("messageCount", localDb.getInt("messageCount")+1);
+
+                        mainLayout.invalidate();
+                        recreate();
+
+                    }
+                });
+
+                Button dismiss = dialog.findViewById(R.id.dismiss);
+                dismiss.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+
+            }
+        });
+
+
+/*
         addMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -244,7 +302,7 @@ public class MessagesActivity extends AppCompatActivity {
                 builder.show();
             }
         });
-
+*/
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
