@@ -2,32 +2,34 @@
 <resources>
     <string name="app_name">TraceBrace</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="onboarding_message_one">TraceBrace je narukvica koja omogućava slanje SOS poruka putem ove aplikacije.</string>
-    <string name="onboarding_message_three">SOS poruke se šalju preko Vašeg mobilnog operatera, dok se u njima šalje i Vaša lokacija. Broj poruka je neograničen.</string>
-    <string name="message_cameraScan">Da bi spojili narukvicu drizte taster 5-7 sekundi</string>
-    <string name="onboarding_message_suess">Čestitamo uspiješno ste dodali svoju naruukvicu !</string>
-    <string name="no_messages">Nema poruka :(</string>
+    <string name="onboarding_message_one"> <b>TraceBrace</b> je narukvica koja omogućava slanje <b>SOS poruka</b> putem ove aplikacije.</string>
+    <string name="onboarding_message_three"><b>SOS poruke</b> se šalju preko Vašeg mobilnog operatera, dok se u njima šalje i Vaša lokacija. Broj poruka je neograničen.</string>
+    <string name="message_cameraScan">Da bi spojili narukvicu, držite taster 5-7 sekundi</string>
+    <string name="onboarding_message_suess">Čestitamo, uspješno ste dodali Vašu narukvicu !</string>
+    <string name="no_messages">Nema unesenih poruka</string>
     <string name="option_change">Izmijeni</string>
-    <string name="option_cancel">Ponisti</string>
-    <string name="option_delete">Izbrisi</string>
+    <string name="option_cancel">Poništi</string>
+    <string name="option_delete">Izbriši</string>
     <string name="new_message">Nova poruka</string>
-    <string name="content_text">Sadrzaj vase poruke</string>
+    <string name="content_text">Sadržaj vaše poruke</string>
     <string name="number_text">Broj</string>
     <string name="settings_category_0">Postavke poruke</string>
-    <string name="setting_summary_0">Dopustite aplikaciji da prati vas GPS signal i dodaje u vasu SOS poruku</string>
-    <string name="setting_title_0">Pracenje GPS-om</string>
-    <string name="setting_summary_1">Ova opcija omogucava da se u poruci posalje link sa live lokacijom i da se prati telefon (zahtijeva internet)</string>
-    <string name="setting_title_1">Pracenje uzivo</string>
-    <string name="setting_summary_2">U slucaju da nemate internet konekciju mozete poslati vise poruka u slucaju promjene vase lokacije</string>
-    <string name="setting_title_2">Udaljenost poruka</string>
+    <string name="setting_summary_0">Dopustite aplikaciji da prati i doda vaš GPS signal u SOS poruku</string>
+    <string name="setting_title_0">Praćenje GPS-om</string>
+    <string name="setting_summary_1">Ova opcija omogućava slanje linka u poruci sa live lokacijom i praćenje telefona (zahtijeva internet)</string>
+    <string name="setting_title_1">Praćenje uživo</string>
+    <string name="setting_summary_2">Ukoliko nemate internet konekciju, možete poslati više poruka u slučaju promjene vaše lokacije</string>
+    <string name="setting_title_2">Interval između poruka</string>
     <string name="add_btn">Dodaj</string>
-    <string name="cancel_btn">Ponisti</string>
+    <string name="cancel_btn">Poništi</string>
     <string name="option_add">Dodaj</string>
     <string name="setting_title_3">O nama</string>
     <string name="setting_title_4">Kupi narukvicu</string>
     <string name="setting_title_5">Ostavi utisak</string>
     <string name="location">Lokacija</string>
-    <string name="edit_message">Edit Message</string>
+    <string name="edit_message">Izmijeni poruku</string>
+    <string name="to_connect_bracelet_hold_button">Da bi spojili narukvicu, držite taster 5-7 sekundi</string>
+    <string name="syncMsg">Release the button!   Your bracelet will now go through the syncing process. It will take a few minutes, so please wait!</string>
 
 
     <string-array name="message_distance_values">
@@ -39,7 +41,7 @@
     </string-array>
 
     <string-array name="message_distance">
-        <item>Iskljuceno</item>
+        <item>Isključeno</item>
         <item>Svakih 2 km</item>
         <item>Svakih 5 km</item>
         <item>Svakih 15 km</item>

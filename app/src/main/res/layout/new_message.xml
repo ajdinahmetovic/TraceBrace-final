@@ -22,7 +22,6 @@
 
     <EditText
         android:padding="6dp"
-
         android:id="@+id/numberInput"
         android:inputType="phone"
         android:fontFamily="@font/ebrima"

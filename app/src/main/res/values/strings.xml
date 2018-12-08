@@ -1,51 +1,39 @@
 <resources>
     <string name="app_name" translatable="false">TraceBrace</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <!--
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="onboarding_message_one">TraceBrace je narukvica koja omogućava slanje SOS poruka putem ove aplikacije.</string>
-    <string name="onboarding_message_three">SOS poruke se šalju preko Vašeg mobilnog operatera, dok se u njima šalje i Vaša lokacija. Broj poruka je neograničen.</string>
-    <string name="message_cameraScan">Dodajte Vašu narukvicu! Skenirajte QR kod koji ste dobili u pakovanju.</string>
-    <string name="onboarding_message_suess">Čestitamo uspiješno ste dodali svoju naruukvicu !</string>
-    <string name="no_messages">No messages :(</string>
-    <string name="option_change">Izmijeni</string>
-    <string name="option_cancel">Ponisti</string>
-    <string name="option_delete">Izbrisi</string>
-    <string name="new_message">Nova poruka</string>
-    <string name="content_text">Sadrzaj vase poruke</string>
-    <string name="number_text">Broj</string>
-    -->
+
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="onboarding_message_one">TraceBrace is a bracelet that allows you to send SOS messages via this application.</string>
-    <string name="onboarding_message_three">The SOS messages with your location are sent via your service provider. The number of messages you can send at once is unlimited.</string>
-    <string name="message_cameraScan">To connect bracelet please hold button for 5-7 seconds</string>
-    <string name="onboarding_message_suess">Congratulations, you have successfully connected your bracelet!</string>
-    <string name="no_messages">No messages :(</string>
+    <string name="onboarding_message_one"><b>TraceBrace</b> is a bracelet that allows you to send <b>SOS messages</b> via this application.</string>
+    <string name="onboarding_message_three"><b>The SOS messages</b> with your location are sent via your <b>service provider.</b> The number of messages you can send at once is unlimited.</string>
+    <string name="message_cameraScan">To connect your bracelet, please hold the button for 5-7 seconds</string>
+    <string name="onboarding_message_suess">Congratulations, your bracelet is successfully connected!</string>
+    <string name="no_messages">No messages entered !</string>
     <string name="option_change">Edit</string>
     <string name="option_cancel">Cancel</string>
     <string name="option_delete">Delete</string>
     <string name="new_message">New message</string>
-    <string name="content_text">Content of SOS message</string>
+    <string name="content_text">Message</string>
     <string name="number_text">Phone number</string>
     <string name="title_activity_settings2">Settings</string>
     <string name="settings_category_0">Message settings</string>
-    <string name="setting_summary_0">Allow application to add your location to SOS message</string>
+    <string name="setting_summary_0">Allow application to add your location to your SOS messages</string>
     <string name="setting_title_0">GPS tracking</string>
-    <string name="setting_summary_1">Allow application to add link to your application where you can be tracked live in realtime (requires internet)</string>
+    <string name="setting_summary_1">Allow application to add link to your application so you could be tracked live in realtime (requires internet connection)</string>
     <string name="setting_title_1">Live tracking</string>
-    <string name="setting_summary_2">In case you dont have internet connection app will send more messages by your location changes</string>
-    <string name="setting_title_2">Distance between messages</string>
+    <string name="setting_summary_2">In case that you don\'t have internet connection, more messages will be sent depending on your location change</string>
+    <string name="setting_title_2">Time interval between messages</string>
     <string name="add_btn">Dodaj</string>
     <string name="cancel_btn">Ponisti</string>
     <string name="option_add">Add</string>
     <string name="ID">-0</string>
     <string name="setting_title_3">About</string>
-    <string name="setting_title_4">Buy bracelet</string>
-    <string name="setting_title_5">Leave feedback</string>
+    <string name="setting_title_4">Buy a bracelet</string>
+    <string name="setting_title_5">Leave a feedback</string>
     <string name="location">Location</string>
-    <string name="edit_message">Edit Message</string>
+    <string name="edit_message">Edit message</string>
+    <string name="to_connect_bracelet_hold_button">To connect your bracelet, please hold the button for 5-7 seconds</string>
+    <string name="syncMsg">Release the button!   Your bracelet will now go through the syncing process. It will take a few minutes, so please wait!</string>
 
     <string-array name="message_distance_values">
         <item>-1</item>

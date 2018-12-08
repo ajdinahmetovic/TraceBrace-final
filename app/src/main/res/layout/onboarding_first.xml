@@ -13,6 +13,7 @@
         android:src="@drawable/asset_grb"/>
 
     <TextView
+        android:textStyle="bold"
         android:paddingTop="50dp"
         android:textSize="40dp"
         android:fontFamily="@font/ebrima"

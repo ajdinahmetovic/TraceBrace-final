@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFBF55"
+
     tools:context=".MainActivity">
 
     <FrameLayout
@@ -19,6 +20,18 @@
         app:layout_constraintVertical_bias="0.226">
 
     </FrameLayout>
+
+    <ProgressBar
+        android:id="@+id/sync"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintBottom_toTopOf="@+id/frame"
+        app:layout_constraintEnd_toStartOf="@+id/frame"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/frame"
+        app:layout_constraintTop_toBottomOf="@+id/frame" />
     <!--
     <android.support.design.widget.TabLayout
         android:id="@+id/tabDots"
